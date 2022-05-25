@@ -3332,7 +3332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5c4d9ed614ad8d546bf03f9231a18e12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _anim: {fileID: 0}
+  _anim: {fileID: 1658532867}
   _loginPanel: {fileID: 1318571394}
   _registerPanel: {fileID: 820053818}
   _asyncPanel: {fileID: 508679616}
@@ -3355,6 +3355,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fd5ab2f562f8184e8df8eb61863e2b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _anim: {fileID: 1658532867}
   _asyncPanel: {fileID: 508679616}
   _asyncText: {fileID: 1854884261}
   _password: {fileID: 242294519}

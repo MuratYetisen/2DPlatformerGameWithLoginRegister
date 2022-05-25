@@ -7,8 +7,36 @@ using UnityEngine.UI;
 
 public class GetSetAvatar : MonoBehaviour
 {
-    [SerializeField] InputField _newUsername;
+    public InputField _newUsername;
+    public Text _mainUsername;
+    //public Image _mainAvatar;
+    GetPlayerAccountInfo _getPlayerAccountInfo;
+
    
+    private void Awake()
+    {
+        _getPlayerAccountInfo = new GetPlayerAccountInfo();
+        _getPlayerAccountInfo.GetAccountInfo();
+        _newUsername.text = _getPlayerAccountInfo._displayName;
+        
+    }
+    public void GetPlayerName()
+    {
+        PlayFabClientAPI.GetAccountInfo(new GetAccountInfoRequest(), 
+        
+        Result =>
+        {
+            _mainUsername.text = Result.AccountInfo.TitleInfo.DisplayName;
+        
+        },
+        Error => 
+        {
+        
+        
+        
+        
+        });
+    }
     public void SetAvatarUpload(string URL)
     {
       

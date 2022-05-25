@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class GameSceneController : MonoBehaviour
 {
-    [SerializeField] GameObject _dashboardPanel,_avatarChangePanel,_usernameChangePanel;
+    [SerializeField] GameObject _dashboardPanel,_avatarChangePanel,_usernameChangePanel,_defaultImage,Image4,Image5,Image6,Image7;
     [SerializeField] Text _playerName;
     GetPlayerAccountInfo _getPlayerAccountInfo;
     GetSetAvatar _getSetAvatar;
@@ -16,7 +16,7 @@ public class GameSceneController : MonoBehaviour
         _getPlayerAccountInfo = new GetPlayerAccountInfo();
         _getPlayerAccountInfo.GetAccountInfo();
         _playerName.text = _getPlayerAccountInfo._displayName;
-        _getSetAvatar = new GetSetAvatar();
+        _getSetAvatar = GetComponent<GetSetAvatar>();
 
     }
     void Update()
@@ -55,5 +55,37 @@ public class GameSceneController : MonoBehaviour
         {
             _usernameChangePanel.SetActive(true);
         }
+    }
+    public void DefaultImageChangerImage4()
+    {
+        _defaultImage.SetActive(false);
+        Image4.SetActive(true);
+        Image5.SetActive(false);
+        Image6.SetActive(false);
+        Image7.SetActive(false);
+    }
+    public void DefaultImageChangerImage5()
+    {
+        _defaultImage.SetActive(false);
+        Image4.SetActive(false);
+        Image5.SetActive(true);
+        Image6.SetActive(false);
+        Image7.SetActive(false);
+    }
+    public void DefaultImageChangerImage6()
+    {
+        _defaultImage.SetActive(false);
+        Image4.SetActive(false);
+        Image5.SetActive(false);
+        Image6.SetActive(true);
+        Image7.SetActive(false);
+    }
+    public void DefaultImageChangerImage7()
+    {
+        _defaultImage.SetActive(false);
+        Image4.SetActive(false);
+        Image5.SetActive(false);
+        Image6.SetActive(false);
+        Image7.SetActive(true);
     }
 }

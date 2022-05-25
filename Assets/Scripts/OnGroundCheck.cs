@@ -10,14 +10,12 @@ public class OnGroundCheck : MonoBehaviour
     public bool IsOnGround => _isOnGround;
     [SerializeField] float _maxDistance;
     [SerializeField] LayerMask _layerMask;
-    void Start()
-    {
-
-    }
+   
 
 
     void Update()
     {
+        
         foreach (Transform footTransform in _translates)
         {
             CheckFootOnGround(footTransform);

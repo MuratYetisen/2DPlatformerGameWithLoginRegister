@@ -6,6 +6,7 @@ using UnityEngine.UI;
 
 public class Login : MonoBehaviour
 {
+    [SerializeField] Animator _anim;
     [SerializeField] GameObject _asyncPanel;
     [SerializeField] Text _asyncText;
     [SerializeField] InputField  _password,_input;
@@ -40,6 +41,13 @@ public class Login : MonoBehaviour
         _asyncText.text = "Logged in";
         yield return new WaitForSeconds(2f);
         SceneManager.LoadScene(1);
+        if (_loginBase.Async_Login==false)
+        {
+            _asyncPanel.SetActive(false);
+            _anim.Play("Failed");
+        }
+       
+        
     }
     void LoginWithEmail()
     {

@@ -30,10 +30,22 @@ public class Register : MonoBehaviour
         _asyncPanel.SetActive(true);
         _asyncText.text = "Being Registered";
         _registerBase.RegisterControl(_email, _username, _password, _repeatPassword, _registerButton);
-        yield return new WaitUntil(() => _registerBase.Register_Async);
-        _asyncText.text = "Register is Successful";
-        yield return new WaitForSeconds(1f);
-        _asyncPanel.SetActive(false);
+        if (_registerBase.Register_Async == false)
+        {
+            yield return new WaitForSeconds(1f);
+            _asyncPanel.SetActive(false);
+            _anim.Play("Failed");
+        }
+        else
+        {
+            yield return new WaitUntil(() => _registerBase.Register_Async);
+            _asyncText.text = "Register is Successful";
+            yield return new WaitForSeconds(1f);
+            _asyncPanel.SetActive(false);
+            _anim.Play("Success");
+        }
+        
+
     }
     public void SwitchLoginOrRegister()
     {
@@ -66,7 +78,7 @@ public class Register : MonoBehaviour
         {
 
             Debug.Log("Access Failed");
-
+            _anim.Play("Failed");
         }) ; 
         
     }

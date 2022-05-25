@@ -21,7 +21,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _moverController = new MoverController();
-        _onGroundCheck = new OnGroundCheck();
+        _onGroundCheck = GetComponent<OnGroundCheck>();
         
     }
     
@@ -32,7 +32,13 @@ public class PlayerController : MonoBehaviour
         {
             _isSpaceControl = true;
         }
-       
+        if (!_onGroundCheck.IsOnGround)
+        {
+            _isSpaceControl = false;
+            
+
+        }
+
     }
     private void FixedUpdate()
     {
@@ -53,10 +59,11 @@ public class PlayerController : MonoBehaviour
             _moverController.Jump(_playerRigidbody2D, _jumpForce, _isJumpActive);
             _animator.SetBool("__isJump", _isSpaceControl);
         }
-        //if (_onGroundCheck.IsOnGround == false)
-        //{
-        //    _isSpaceControl = false;
-        //}
+        if (_onGroundCheck.IsOnGround)
+        {
+            _animator.SetBool("__isJump", false);
+        }
+
 
     }
     void Flip()

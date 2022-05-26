@@ -11,11 +11,11 @@ public class PlayerController : MonoBehaviour
     MoverController _moverController;
     OnGroundCheck _onGroundCheck;
     [SerializeField] Transform _PlayerTransform;
-    [SerializeField] float _playerSpeed,_jumpForce;
-    [SerializeField] bool _isHorizontalActive, _isJumpActive,_isFlipActive;
+    [SerializeField] float _playerSpeed,_jumpForce,_climbSpeed;
+    [SerializeField] bool _isHorizontalActive, _isJumpActive,_isFlipActive, _isVerticalActive;
     [SerializeField] Rigidbody2D _playerRigidbody2D;
     [SerializeField] SpriteRenderer _spriteRenderer;
-/*  [SerializeField]*/  bool _isSpaceControl;
+                    public bool _isSpaceControl, _isOnLedder;
     [SerializeField] Animator _animator;
     
     private void Awake()
@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
         if (!_onGroundCheck.IsOnGround)
         {
             _isSpaceControl = false;
-            
+            _animator.SetBool("__isJump", false);
 
         }
 
@@ -45,7 +45,7 @@ public class PlayerController : MonoBehaviour
         Walk();
         Jump();
         Flip();
-       
+        Climb();
     }
     void Walk()
     {
@@ -59,10 +59,7 @@ public class PlayerController : MonoBehaviour
             _moverController.Jump(_playerRigidbody2D, _jumpForce, _isJumpActive);
             _animator.SetBool("__isJump", _isSpaceControl);
         }
-        if (_onGroundCheck.IsOnGround)
-        {
-            _animator.SetBool("__isJump", false);
-        }
+    
 
 
     }
@@ -72,7 +69,25 @@ public class PlayerController : MonoBehaviour
     }
     void Climb()
     {
-
+        if (_isOnLedder)
+        {
+            _moverController.Vertical(_PlayerTransform, _climbSpeed, _isVerticalActive);
+            _animator.SetBool("__onLedder", true);
+        }
+        
     }
-
+    //private void OnCollisionEnter2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.tag == "Platform")
+    //    {
+    //        transform.SetParent(collision.transform);
+    //    }
+    //}
+    //private void OnCollisionExit2D(Collision2D collision)
+    //{
+    //    if (collision.gameObject.tag == "Platform")
+    //    {
+    //        transform.SetParent(GetComponent("Player").transform);
+    //    }
+    //}
 }

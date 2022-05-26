@@ -13,29 +13,29 @@ public class GameManagement : MonoBehaviour
         {
             Time.timeScale = 0;
             StartCoroutine(GameOverC());
-            SceneManager.LoadScene(1);
             Time.timeScale = 1;
         }
         if (collision.gameObject.tag=="Finish")
         {
             Time.timeScale = 0;
             StartCoroutine(YouWinC());
-            SceneManager.LoadScene(1);
             Time.timeScale = 1;
         }
     }
     IEnumerator GameOverC()
     {
         _gameOverImage.SetActive(true);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         _gameOverImage.SetActive(false);
+        SceneManager.LoadScene(1);
         
     }
     IEnumerator YouWinC()
     {
         _youWinImage.SetActive(true);
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
         _youWinImage.SetActive(false);
-       
+        SceneManager.LoadScene(1);
+        
     }
 }
